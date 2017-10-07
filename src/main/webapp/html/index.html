@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="shortcut icon" href="../media/image/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="../media/image/favicon.ico" type="image/x-icon">
+    <title>Bengalathon: HighFlyers</title>
+
+    <link href="../css/external/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/external/font-awesome.css" rel="stylesheet">
+    <link href="../css/external/angular-material.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="../css/external/toastr/toastr.min.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+</head>
+
+<body ng-app="dfimsApp" ng-controller="mainController as mainCtrl" class="pace-done mini-navbar">
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li>
+					<div class="show-in-xs ">
+					  <h1 ng-click="mainCtrl.goToHome()" class="text-center" >
+							
+							
+                            <img alt="image" class="img-circle" src="../media/image/biswa-bangla.png" width="58" />
+                             
+                                <p class=" header-text-container">
+                                    <span class="main-abbr-text">DFIMS</span>
+                                    
+                                </p>
+								
+                            </h1>
+							</div>
+					<li>
+                    <li>
+                        <a ng-click="mainCtrl.navigateToNotify()"><i class="fa fa-th-list"></i> <span class="nav-label">Track Event</span></a>
+                        
+                    </li>
+                    <li>
+                        <a ng-click="mainCtrl.navigateToDisasterLine()"><i class="fa fa-adjust"></i> <span class="nav-label">Disaster Live</span><span class="label label-warning pull-right">16/24</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Track Support</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+							<li><a ng-click="mainCtrl.navigateToSupport()">Track Support Police</a></li>
+							<li><a ng-click="mainCtrl.navigateToSupport()">Track Support Ambulance</a></li>
+                            <li><a ng-click="mainCtrl.navigateToSupport()">Track Support Hospital</a></li>
+                            <li><a ng-click="mainCtrl.navigateToSupport()">Track Support Fire Brigade</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a ng-click="mainCtrl.navigateToChat()"><i class="fa fa-pie-chart"></i> <span class="nav-label">Chat Support</span>  </a>
+                    </li>
+                    <!-- <li> -->
+                        <!-- <a ng-click="mainCtrl.navigateToChat()"><i class="fa fa-commenting"></i> <span class="nav-label">Chat Support User</span></a> -->
+                    <!-- </li> -->
+                    <li>
+                        <a ng-click="mainCtrl.navigateToMail()"><i class="fa fa-envelope"></i> <span class="nav-label">Mail Box</span></a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+
+        <div id="page-wrapper" class="dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top main-heading" role="navigation" style="margin-bottom: 0">
+                    <div class="row">
+					<div class="col-md-6 col-lg-5 col-sm-5 col-xs-2">
+					  <div class="row">
+						<div class="col-md-2" ng-show="!mainCtrl.loginEnable">
+                            <div class="navbar-header ">
+                                <a class="navbar-minimalize minimalize-styl-2" href="#">
+                                    <i class="">
+                                        <div class="hamburger-icon"></div>
+                                        <div class="hamburger-icon"></div>
+                                        <div class="hamburger-icon"></div>
+                                    </i> </a>
+
+                            </div>
+                        </div>
+					  <div class="col-md-10  hide-in-xs mrgn-btm-10">
+                            <h1 ng-click="mainCtrl.goToHome()" class="row">
+							
+							<span class="col-md-2">
+                            <img alt="image" class="img-circle" src="../media/image/biswa-bangla.png" width="58" />
+                             </span>
+                                <p class="col-md-10 header-text-container large-header">
+                                    <span class="main-abbr-text">DFIMS</span>
+                                    <span class="main-full-text">Disaster Forecasting &amp; Information Management System</span>
+                                </p>
+								
+                            </h1>
+                        </div>
+                         </div> 
+						 </div>
+                      
+                        <div class="col-md-6 col-sm-7 col-lg-7  col-xs-10 navbar-right-container">
+                            <ul class="nav navbar-top-links navbar-right" ng-show="!mainCtrl.loginEnable">
+								<li>
+                                    <span class="m-r-sm welcome-message">Admin : <strong> {{mainCtrl.userName}} </strong></span>
+                                </li>
+								<li>
+                                    <a title="logout" href="javascript:void(0)">Logout</a>
+                                </li>
+                                <li class="dropdown" ng-class="{'open':mainCtrl.showDrpMenu}">
+                                    <a id="notifySection" class="dropdown-toggle count-info" ng-click="mainCtrl.showHideDrpMenu()">
+                                        <i class="fa fa-bell"></i> <span class="label label-primary">{{mainCtrl.notifyDatas.length}}</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-alerts align-notify" ng-show="mainCtrl.showDrpMenu" ng-cloak>
+                                        <ul class="notification-alerts">
+                                            <li class="notify-lists" ng-repeat="indivNotifyData in mainCtrl.notifyDatas">
+                                                <md-checkbox ng-model="indivNotifyData.checked" ng-change="mainCtrl.notifyCheckBox(indivNotifyData.checked)"></md-checkbox>
+                                                <div class="alert-text-section notify-alert-text">
+                                                    <div class="notify-text">{{indivNotifyData.victimName}} raised an SOS from {{indivNotifyData.sosArea}}</div>
+                                                    <div>
+                                                        <span>{{indivNotifyData.message}}</span>
+                                                        <span class="pull-right text-muted" ng-bind="mainCtrl.timeSince(indivNotifyData.sosTime)"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="divider"></div>
+                                        </li>
+                                            <li class="notify-lists select-all section">
+                                                <div class="select-all-container">
+                                                    <md-checkbox ng-change="mainCtrl.slectAll(mainCtrl.selectAllNot)" ng-model="mainCtrl.selectAllNot"></md-checkbox>
+                                                    <span class="select-all-text"> All </span>      
+                                                </div>
+                                                <div class="notify-incident-id">
+                                                    <md-input-container flex>
+                                                        <label class="label-font">Incident Id</label>
+                                                        <input ng-model="mainCtrl.incidentId" type="text"/>
+                                                    </md-input-container>
+                                                </div>
+                                                <div class="alert-text-section notification-button-container">
+                                                    <md-button ng-click="mainCtrl.authAllNotification(mainCtrl.notifyDatas)" class="md-raised md-primary custom-buttom">Authorise</md-button>
+                                                    <md-button ng-click="mainCtrl.rejectAllNotification(mainCtrl.notifyDatas)" class="md-raised md-primary custom-buttom">Reject</md-button>
+                                                </div>
+                                        </li>
+                                    </ul>
+                                    </ul>
+                                    
+                                </li>
+                               
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+            <div class="row border-bottom white-bg dashboard-header create-event" ng-show="mainCtrl.loginEnable">
+                <form name="loginForm" class="login-container" autocomplete="off">
+                    <div ng-if="mainCtrl.loginError" class="login-error-text"> Please Sign In With Valid Admin Credentials</div>
+                    <md-input-container class="md-block">
+                         <label class="label-font">Admin Name</label>
+                         <input type="text" name="userName" ng-model="mainCtrl.userName" required/>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                         <label class="label-font">Password</label>
+                         <input type="password" name="password" ng-model="mainCtrl.password" required />
+                    </md-input-container>
+                    <md-button ng-disabled="loginForm.userName.$error.required || loginForm.password.$error.required || mainCtrl.logInLoading" ng-click="mainCtrl.logInSubmit()" class="md-raised md-primary login-button">&nbsp Login &nbsp</md-button>
+                </form>
+            </div>
+            <div ng-show="!mainCtrl.showNotification && !mainCtrl.showNotificationCitizen && !mainCtrl.showNotifySuppport && !mainCtrl.showNotificationDisasterLine && !mainCtrl.showNotificationChat && !mainCtrl.showNotificationMail && !mainCtrl.showCreateIncident && !mainCtrl.loginEnable">
+                <div class="row  border-bottom white-bg dashboard-header">
+                    <div class="col-md-1 col-sm-3  col-xs-4">
+
+                        <ul class="inventory-menu">
+
+                            <li ng-click="mainCtrl.setMapPointers('fire_station')">
+                                <a class="fire-brigade" href="javascript:void(0)"><span>Fire brigade</span></a>
+
+                            </li>
+                            <li ng-click="mainCtrl.setMapPointers('hospital')">
+                                <a class="hospital" href="javascript:void(0)"><span>Hospital</span></a>
+
+                            </li>
+                            <li ng-click="mainCtrl.setMapPointers('ambulance')">
+                                <a class="ambulance" href="javascript:void(0)"><span>Ambulance</span></a>
+
+                            </li>
+                            <li ng-click="mainCtrl.setMapPointers('police')">
+                                <a class="police-station" href="javascript:void(0)"><span>Police Station</span></a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-11 col-sm-9  col-xs-8">
+                        <div class="row selec-area" ng-show="!mainCtrl.showEachIncidentTable">
+                            <div class="form-group selectarea-bg col-md-12">
+                                <label for="secArea">Select Area:</label>
+                                <select class="form-control" id="secArea">
+                                    <option value="0">Select Below...</option>
+                                    <option value="5">Salt lake SEC V</option>
+                                    <option value="Bantala">Bantala</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="map"></div>
+
+                    </div>
+
+
+                </div>
+                <div class="row  border-bottom white-bg dashboard-header">
+                    <div class="col-md-12 col-xs-12 overlfow-xs-auto">
+					<h2 class="main-table-header" ng-show="!mainCtrl.showEachIncidentTable"> Item List  </h2>
+                    <h2 class="main-table-header" ng-show="mainCtrl.showEachIncidentTable"> Incident: <span ng-bind="mainCtrl.incidentMessage"> </h2>
+                    <md-button class="md-raised md-warn md-button md-ink-ripple pull-right" ng-click="mainCtrl.refreshData(mainCtrl.showEachIncidentTable)">Refresh Data</md-button>
+                    <h5 class="success-message" ng-show="mainCtrl.showCloseMsg"> Incident Closed Successfully</h5>
+                        <div layout="column" layout-fill>
+                            <md-content layout-padding  layout-align="center">
+                                <div >
+
+                                    
+                                    <div grid-data id='test' grid-options="gridOptions" grid-actions="gridActions">
+                                       
+                                        <div ng-show="!mainCtrl.showEachIncidentTable">
+                                            <table ng-show="mainCtrl.showFloodTable" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                                                <thead>
+                                                    <tr>
+                                                         <th  class=" mdl-data-table__cell--non-numeric"></th>
+                                                        <th  class=" mdl-data-table__cell--non-numeric">
+                                                            <span>Id</span>
+                                                        </th>
+                                                          <th  class=" mdl-data-table__cell--non-numeric">
+                                                            <span>Type</span>
+                                                        </th>
+                                                        <th  class=" mdl-data-table__cell--non-numeric">
+                                                        <span>Disaster Type</span>
+                                                        </th>
+                                                        <th  class=" mdl-data-table__cell--non-numeric">
+                                                            <span>Severity Index</span>
+                                                        </th>
+                                                        <th  class=" mdl-data-table__cell--non-numeric">
+                                                            <span>Impacted Population</span>
+                                                        </th>
+                                                        <th  class=" mdl-data-table__cell--non-numeric">
+                                                            <span>Date</span>
+                                                        </th>
+                                                        
+                                                        <th  class=" mdl-data-table__cell--non-numeric">
+                                                            <span>Area/Building</span>
+                                                        </th>
+                                                       
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in gridOptions track by $index">
+													
+														<td  class="mdl-data-table__cell--non-numeric">    
+														    <input ng-click="mainCtrl.incidentRadio()" type="radio" name="incidentRadio" id="flood_{{item.id}}-{{item.itemType}}" value="{{item.id}}-{{item.itemType}}">
+                                                            <label for="flood_{{item.id}}-{{item.itemType}}"></label> 
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span ng-bind="item.id"></span>
+                                                        </td>
+                                                       <td  class="mdl-data-table__cell--non-numeric">
+                                                        <span ng-bind="item.itemType" ng-click="mainCtrl.getIncidentDetails(item.id, item.itemType, item)" ng-class="{'no-pointer':item.itemType.indexOf('Incident')===-1, 'incident-text':item.itemType.indexOf('Incident')>-1}"></span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                        <span ng-bind="item.disasterType"></span>
+                                                        </td>
+                                                       
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span ng-bind="item.severityIndex"></span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span ng-bind="item.impactedPopulation"></span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span ng-bind="item.date"></span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span ng-bind="item.address"></span>
+                                                        </td>
+                                                          
+                                                    
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table ng-show="mainCtrl.showFireTable" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                                                <thead>
+                                                    <tr>
+                                                       <th  class="sortable mdl-data-table__cell--non-numeric">
+                                                            
+                                                        </th>
+                                                          <th  class="sortable mdl-data-table__cell--non-numeric">
+                                                            <span>Type</span>
+                                                        </th>
+                                                        <th  class="sortable mdl-data-table__cell--non-numeric">
+                                                        <span>Disaster Type</span>
+                                                        </th>
+                                                        <th  class="sortable mdl-data-table__cell--non-numeric">
+                                                            <span>Severity Index</span>
+                                                        </th>
+                                                        <th class="sortable mdl-data-table__cell--non-numeric">
+                                                            <span>Impacted Population</span>
+                                                        </th>
+                                                        <th  class="sortable mdl-data-table__cell--non-numeric">
+                                                            <span>Date</span>
+                                                        </th>
+                                                        
+                                                        <th  class="sortable mdl-data-table__cell--non-numeric">
+                                                            <span>Area/Building</span>
+                                                        </th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in gridOptions track by $index">
+                                                        <td  class="mdl-data-table__cell--non-numeric">    
+                                                            <input type="radio" name="incidentRadio" id="fire_{{item.id}}-{{item.itemType}}" value="{{item.id}}-{{item.itemType}}">
+                                                            <label for="fire_{{item.id}}-{{item.itemType}}"></label> 
+                                                        </td>
+                                                       <td  class="mdl-data-table__cell--non-numeric">
+                                                        <span ng-bind="item.itemType" ng-click="mainCtrl.getIncidentDetails(item.id, item.itemType)">></span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                        <span ng-bind="item.disasterType"></span>
+                                                        </td>
+                                                       
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span ng-bind="item.severityIndex"></span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span ng-bind="item.impactedPopulation"></span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span ng-bind="item.date"></span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span ng-bind="item.address"></span>
+                                                        </td>
+                                                    
+                                                         
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--Incident table Starts-->
+                                        <div ng-show="mainCtrl.showEachIncidentTable">
+                                            <table  class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                                                <thead>
+                                                    <tr>
+                                                          <th class="mdl-data-table__cell--non-numeric">
+                                                            <span>Victim Name</span>
+                                                        </th>
+                                                        <th class="mdl-data-table__cell--non-numeric">
+                                                            <span>SOS Time</span>
+                                                        </th>
+                                                        <th class="mdl-data-table__cell--non-numeric">
+                                                            <span>Victim Status</span>
+                                                        </th>
+                                                        <th class="mdl-data-table__cell--non-numeric">
+                                                            <span>Location</span>
+                                                        </th>
+                                                        <th class="mdl-data-table__cell--non-numeric">
+                                                            <span>Building Address</span>
+                                                        </th>
+                                                        
+                                                        <th  class="mdl-data-table__cell--non-numeric">
+                                                            <span>Contact #</span>
+                                                        </th>
+                                                        <th class="mdl-data-table__cell--non-numeric">
+                                                            <span>Building POC</span>
+                                                        </th>
+                                                        <th class="mdl-data-table__cell--non-numeric">
+                                                            <span>Message</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in mainCtrl.sosVictimDetails track by $index">
+                                                       <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span> {{item.victimName}}</span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span >{{item.sosDate}} {{item.sosTime}}</span>
+                                                        </td>
+                                                       
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span >{{item.status}}</span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span >{{item.location}}</span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span>{{item.buildingAddress}}</span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span >{{item.contact}}</span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span >{{item.buildingPOC}}</span>
+                                                        </td>
+                                                        <td  class="mdl-data-table__cell--non-numeric">
+                                                            <span >{{item.message}}</span>
+                                                        </td>                                                      
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--Incident Table Ends -->
+                                    </div>
+                                </div>
+                            </md-content>
+                        </div>
+						<br/><br/><br/><br/>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="mainCtrl.showNotificationCitizen" class="row  create-event border-bottom white-bg dashboard-header">
+				<div class="notify-citizen-container col-md-12">
+				<h2> Notify Citizen </h2>
+				<form name="notifyCitiForm">
+				<div class="form-group">
+				  <label for="notifyComment">Notify comments:</label>
+				  <textarea class="form-control" rows="2" ng-model="mainCtrl.notifyCitiForm.message" name="notifyComment" id="notifyComment"></textarea>
+				</div>
+				 <div class="row">
+						  <div class="col-md-6 text-left">
+						 
+				</div>
+						   <div class="col-md-6 text-right">
+						    <md-button class="md-raised md-warn" ng-click="mainCtrl.goToHome()">BACK TO HOME</md-button>
+						    <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="mainCtrl.notifyCitizenSer(mainCtrl.notifyCitiForm.message)" >Submit</md-button>
+                </div>
+                </div>
+
+				
+				
+				</form>
+				</div>
+			</div>
+            <div class="row border-bottom white-bg dashboard-header notify-sprt-parent create-event" ng-show="mainCtrl.showNotifySuppport" >
+                <h2> Notify Support </h2>
+				<div class="notify-sprt-main-container">
+                    <ul class="notification-supprt-container">
+                        <li class="row notification-supprt-lists" ng-repeat="data in mainCtrl.notifySprtData">
+                            <h4 class="bold-font">{{data.supportName}}</h4>
+                            <div class="sprt-section sprt-section-margin">
+                                <div class="sprt-user-data">
+                                    <span class="sprt-section-label bold-font">Address :</span>
+                                    <span class="sprt-section-label">{{data.supportAddress}}</span>
+                                </div>
+                                <div class="sprt-user-data">
+                                    <span class="sprt-section-label bold-font">Phone :</span>
+                                    <span class="sprt-section-label">{{data.supportPhone}}</span>
+                                </div>
+                                <div class="sprt-user-data">
+                                    <span class="sprt-section-label bold-font">Email :</span>
+                                    <span class="sprt-section-label">{{data.supportEmail}}</span>
+                                </div>
+                            </div>
+                            <div class="sprt-section form-group sprt-section-margin sprt-user-data">
+                                <textarea class="form-control" rows="3" ng-model="data.supportMessage"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+				 <div class="row">
+						  <div class="col-md-6 text-left">
+						 
+						  </div>
+						   <div class="col-md-6 text-right">
+						    <md-button class="md-raised md-warn" ng-click="mainCtrl.goToHome()">BACK TO HOME</md-button>
+                    <md-button class="md-raised md-primary" ng-click="mainCtrl.sendSupportMsg()">SEND</md-button>
+                </div>
+            </div>
+						  <br/> <br/> <br/>
+						  
+               
+            </div>
+			<div ng-show="mainCtrl.showNotificationDisasterLine" class="row  border-bottom white-bg dashboard-header create-event">
+				<div class="col-md-12">
+				<h2> Disaster Line </h2>
+				<div class="sos-button-container">
+                    <md-button class="md-raised md-warn" ng-click="mainCtrl.goToHome()">BACK TO HOME</md-button>
+                </div>
+				</div>
+			</div>
+			
+			<div ng-show="mainCtrl.showNotificationChat" class="row  border-bottom white-bg dashboard-header create-event">
+				<div class="col-md-12">
+				<h2> Chat Support</h2>
+				<div class="sos-button-container">
+                    <md-button class="md-raised md-warn" ng-click="mainCtrl.goToHome()">BACK TO HOME</md-button>
+                </div>
+				</div>
+			</div>
+			<div ng-show="mainCtrl.showNotificationMail" class="row  border-bottom white-bg dashboard-header create-event">
+				<div class=" col-md-12">
+					<h2> Mail Support</h2>
+				<div class="sos-button-container">
+                    <md-button class="md-raised md-warn" ng-click="mainCtrl.goToHome()">BACK TO HOME</md-button>
+                </div>
+				</div>
+			</div>
+
+            <div ng-show="mainCtrl.showNotification" class="row white-bg notify-section ">
+                <div class="sos-tracking-containers">
+                    <h2 class="text-left">SOS Tracking </h2>
+                    <div class="progress-container clearfix">
+                        <div class="row clearfix progress-container-child">
+                            <div class="each-progress-section ib">
+                                <div class="progress-cells active-bar-cell each-cell ib"> </div>
+                                <div class="progress-info">Alert successfully created</div>
+                            </div>
+                            <div class="each-progress-section ib" ng-repeat="item in mainCtrl.trackAlertProgressData.atertSteps">
+                                <div class="progress-bars ib" ng-class="{'active-bar-cell': item.isActive}"> </div>
+                                <div class="progress-cells ib" ng-class="{'active-bar-cell': item.isActive}" aria-label="{{item.alertInfo}}">
+                         </div>
+                         <div class="progress-info">{{item.alertInfo}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="sos-button-container">
+                    <md-button class="md-raised md-warn" ng-click="mainCtrl.goToHome()">BACK TO HOME</md-button>
+                </div>
+            </div>
+			<div ng-show="mainCtrl.showCreateIncident" class="row  border-bottom white-bg dashboard-header create-event">
+					<div class="col-md-12">
+				<h2> Create Event </h2>
+						<form name="crtIncForm">
+						<div class="row">
+							<div class="col-md-6">
+						  <div class="form-group">
+							<label for="areaId">Area:</label>							
+								<select class="form-control" name="areaId" ng-model="mainCtrl.crtIncForm.areaId" id="areaId">
+									<option value="1">SectorV</option>
+									<option value="2">Park Street</option>
+									<option value="3">Camac Street</option>
+							</select>
+						  </div>
+						   <div class="form-group">
+							<label for="disasterTypeId">Disaster Type:</label>
+							<select class="form-control" ng-model="mainCtrl.crtIncForm.disasterTypeId" id="disasterTypeId">
+									<option value="1">Fire</option>
+									<option value="2">Flood</option>
+									<option value="3">Earthquake</option>
+									<option value="4">Strom</option>
+									<option value="5">Bomb</option>
+									<option value="6">Terrorist</option>
+									<option value="7">Water Log</option>
+							</select>
+							
+						  </div>
+						  
+						  
+						  </div>
+						  <div class="col-md-6">
+						  <div class="form-group">
+							<label for="latitude">Latitude:</label>
+							<input type="text" class="form-control" ng-model="mainCtrl.crtIncForm.location.latitude" id="latitude">
+						  </div>
+						   <div class="form-group">
+							<label for="longitude">Longitude:</label>
+							<input type="text" class="form-control" ng-model="mainCtrl.crtIncForm.location.longitude" id="longitude">
+						  </div>
+                </div>
+						  
+						  </div>
+						  
+						   <div class="form-group">
+							<label for="message">Message:</label>
+							<textarea class="form-control" rows="2" ng-model="mainCtrl.crtIncForm.message" id="message"></textarea>
+							
+						  </div>
+						  
+						  <div class="row">
+						  <div class="col-md-6 text-left">
+						 
+						  </div>
+						   <div class="col-md-6 text-right">
+						    <md-button class="md-raised md-warn" ng-click="mainCtrl.goToHome()">BACK TO HOME</md-button>
+						   <md-button class="md-raised md-primary" ng-click="mainCtrl.createInc(mainCtrl.crtIncForm)">Submit</md-button>
+						  </div>
+						  </div>
+						<br/><br/><br/><br/>
+						</form>
+				
+            </div>
+			 
+			 </div>
+		
+		
+		
+        </div>
+
+    </div>
+    <div class="row" ng-show="!mainCtrl.loginEnable">
+        <div class="col-lg-12">
+            <div class="footer">
+			<div class="row">
+			 <div class="col-md-3  col-xs-3 text-center">
+					<md-button class="md-raised" ng-click="mainCtrl.navigateToCreateIncident()">Create Incident</md-button>
+				   </div>
+					<div class="col-md-3  col-xs-3  text-center">
+					<md-button class="md-raised" ng-disabled="!mainCtrl.enableCloseNotifyButton" ng-click="mainCtrl.closeIncident()">Close Item</md-button>
+				   </div>
+				     <div class="col-md-3  col-xs-3  text-center">
+               
+				<md-button class="md-raised" ng-click="mainCtrl.navigateToNotifyCitizen()">Notify Citizens</md-button>
+				   </div>
+				     <div class="col-md-3  col-xs-3  text-center">
+                        <md-button class="md-raised" ng-disabled="!mainCtrl.enableCloseNotifyButton" ng-click="mainCtrl.notifySupport()">Notify Support</md-button>
+				   </div>
+				     
+        </div>
+		
+            </div>
+        </div>
+    </div>
+
+    </div>
+    
+    </div>
+
+    <!-- Mainly scripts -->
+    <script type="text/javascript" src="../js/external/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../js/external/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/external/tether.min.js"></script>
+    <script type="text/javascript" src="../js/external/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/external/metisMenu/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="../js/external/slimscroll/jquery.slimscroll.min.js"></script>
+    
+    <script type="text/javascript" src="../js/external/angular/angular-animate.min.js"></script>
+    <script type="text/javascript" src="../js/external/angular/ui-bootstrap-tpls-2.2.0.min.js"></script>
+    <script type="text/javascript" src="../js/external/angular/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="../js/external/angular/angular-aria.min.js"></script>
+    <script type="text/javascript" src="../js/external/angular/angular-messages.min.js"></script>
+    <script type="text/javascript" src="../js/external/angular/angular-material.min.js"></script>
+    <script type="text/javascript" src="../js/external/angular/pagination.js"></script>
+    <script type="text/javascript" src="../js/external/angular/dataGrid.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script type="text/javascript" src="../js/dist/dfimsAppMain.js"></script>
+    <!-- jQuery UI -->
+    <script type="text/javascript" src="../js/external/jquery/jquery-ui.js"></script>
+
+
+    <!-- Toastr -->
+    <script type="text/javascript" src="../js/external/toastr/toastr.min.js"></script>
+    <!-- Google Map -->
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzoPVVzUOIghktlFA4BXukDB_5QrtIv7c&libraries=places&callback=myMap"></script>
+
+
+</body>
+
+</html>

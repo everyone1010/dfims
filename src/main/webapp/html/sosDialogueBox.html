@@ -1,0 +1,14 @@
+<div class="sos-dialog-box-container" ng-cloak>
+      <div class="sos-dialog-header">
+        <h2> SOS </h2>
+        <span flex="" class="flex"></span>
+      </div>
+      <div class="sos-dialog-body">
+          <div class="sos-dialog-text">
+            SOS received from <span class="font-bold">{{sosdlgctrl.currentSosDetails.victimName}}</span> on <span class="font-bold">{{sosdlgctrl.currentSosDetails.sosTime}}</span>, Location: <span class="font-bold">{{sosdlgctrl.currentSosDetails.sosLocation}}</span>
+            Take Action Now
+    </div>
+      <md-button class="md-raised" ng-click="sosdlgctrl.takeAuthCancelNotification('close',{'sosId':sosdlgctrl.currentSosDetails.sosId, 'userId': '1'})">Reject</md-button>
+      <md-button class="md-raised md-primary" ng-click="sosdlgctrl.takeAuthCancelNotification('authorise', {'sosId':sosdlgctrl.currentSosDetails.sosId, 'userId': '1'})">Authorise</md-button>
+      </div>
+</div>

@@ -1,0 +1,20 @@
+{
+    "alertDetails":{
+        "atertSteps": [{
+            "alertInfo": "Enroute to event area",
+            "isActive": true
+        },
+        {
+            "alertInfo": "Preaparing for action",
+            "isActive": true
+        },
+        {
+            "alertInfo": "Ready for Action",
+            "isActive": false
+        },
+        {
+            "alertInfo": "Suitable action taken",
+            "isActive": false
+        }]
+    }
+}
