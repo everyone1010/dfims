@@ -28,7 +28,7 @@ public final class AppConstant {
 	
 	//SMTP CONFIG
 	//public static final String SENDGRID_API_KEY = "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";
-	public static final String SENDGRID_API_KEY = "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";
+	public static final String SENDGRID_API_KEY = "";
 
 	private AppConstant() {
 		//
