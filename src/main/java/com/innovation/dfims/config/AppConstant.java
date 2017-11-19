@@ -15,14 +15,20 @@ public final class AppConstant {
 	public static final String STATUS_DANGER = "danger";
 
 	// MYSQL CONFIG
-	public static final String MYSQL_DB_HOST = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-	public static final String MYSQL_DB_PORT = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+	//public static final String MYSQL_DB_HOST = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+	//public static final String MYSQL_DB_PORT = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+	//public static final String MYSQL_SCHEMA = "dfims";
+	//public static final String MYSQL_USERNAME = "adminzf2Zvnm";
+	//public static final String MYSQL_PASSWRD = "6C7-j1QgFQGn";
+	public static final String MYSQL_DB_HOST = "us-cdbr-iron-east-05.cleardb.net";
+	public static final String MYSQL_DB_PORT = ""3306";
 	public static final String MYSQL_SCHEMA = "dfims";
-	public static final String MYSQL_USERNAME = "adminzf2Zvnm";
-	public static final String MYSQL_PASSWRD = "6C7-j1QgFQGn";
+	public static final String MYSQL_USERNAME = "b1beedfae504a5";
+	public static final String MYSQL_PASSWRD = "292fa159";
 	
 	//SMTP CONFIG
-	public static final String SENDGRID_API_KEY = "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";
+	//public static final String SENDGRID_API_KEY = "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";
+	public static final String SENDGRID_API_KEY = "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";
 
 	private AppConstant() {
 		//
