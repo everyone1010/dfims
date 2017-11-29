@@ -36,7 +36,7 @@ public class MasterDataService
 		this.masterDataBusinessMgr = masterDataBusinessMgr;
 	}
 	
-	//http://dfims-tstar.rhcloud.com/currency
+	//http://dfims.cfapps.io/currency
 	@RequestMapping(value = "/currency", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Currency> currency() throws DFIMSException
 	{

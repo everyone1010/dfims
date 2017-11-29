@@ -117,7 +117,7 @@ public class CommonUtils {
 	public static void initiateAlarmingCall(List<String> mobileDM) {
 		String message = "Automated-Disaster-Notification-Call-Admin-Please-Take-Action";
 		for(String adminContact : mobileDM){
-		String baseURL = "https://dfims-tstar.rhcloud.com/makeCall?toNumber="+adminContact+"&content="+message;
+		String baseURL = "https://dfims.cfapps.io/makeCall?toNumber="+adminContact+"&content="+message;
 		System.out.println(baseURL);
 		String callResponse = ApiClientUtil.getRestServiceDataByGET(baseURL);
 		System.out.println("Call Status :"+callResponse);

@@ -18,7 +18,7 @@ html, body {
 <script>
 var map;
 var infowindow;
-var url = "https://dfims-tstar.rhcloud.com"+"/incidentDetail?incidentId=";
+var url = "https://dfims.cfapps.io"+"/incidentDetail?incidentId=";
 var contentjson = "";
 var marker;
 var data ;

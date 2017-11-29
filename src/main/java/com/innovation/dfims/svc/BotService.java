@@ -107,7 +107,7 @@ public class BotService {
 		try {
 			bot = getBotBusinessMgr().createIncidentFromBot(disasterType,
 					bname, mobileNumber, areaName);
-			bot.setEvacuationPlanURL("https://dfims-tstar.rhcloud.com/jsp/evac.jsp?id="+bot.getIncidentId());
+			bot.setEvacuationPlanURL("https://dfims.cfapps.io/jsp/evac.jsp?id="+bot.getIncidentId());
 		} catch (AppException e) {
 			e.printStackTrace();
 			LOGGER.error(e);
@@ -136,7 +136,7 @@ public class BotService {
 		try {
 			bot = getBotBusinessMgr().createSOSFromBot(disasterType,
 					bname, mobileNumber, areaName);
-			bot.setEvacuationPlanURL("https://dfims-tstar.rhcloud.com/jsp/evac.jsp?id="+bot.getIncidentId());
+			bot.setEvacuationPlanURL("https://dfims.cfapps.io/jsp/evac.jsp?id="+bot.getIncidentId());
 		} catch (AppException e) {
 			e.printStackTrace();
 			LOGGER.error(e);

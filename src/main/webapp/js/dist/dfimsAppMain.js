@@ -27,7 +27,7 @@ function myMap(latitude,longitude, zoomval) {
 			var marker = new google.maps.Marker({position:myCenter});
 			marker.setMap(map);
     }
-var CONTEXT_ROOT = 'https://dfims-tstar.rhcloud.com';
+var CONTEXT_ROOT = 'https://dfims.cfapps.io';
 
 angular.module('dfimsApp').constant('constants', {
     'SERVICE_URL': {

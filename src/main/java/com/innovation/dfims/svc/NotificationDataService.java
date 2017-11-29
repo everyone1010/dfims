@@ -32,7 +32,7 @@ public class NotificationDataService
         this.notificationDataBusinessMgr = notificationDataBusinessMgr;
     }
 
-    //http://dfims-tstar.rhcloud.com/notification
+    //http://dfims.cfapps.io/notification
     //http://pc309297:8080/dfims/notification
     /**
      * get Notification Details on periodic refresh

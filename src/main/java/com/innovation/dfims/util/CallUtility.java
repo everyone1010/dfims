@@ -19,7 +19,7 @@ public class CallUtility {
 	private static final Logger LOGGER = Logger.getLogger(CallUtility.class);
 	private static final String ACCOUNT_SID = "AC0716ada162dffba89b8c5223da5fe9b4";
 	private static final String AUTH_TOKEN = "cc923fcebc2b23ce9ea064fe1eb096a2";
-	private static final String talkUrl = "https://dfims-tstar.rhcloud.com/getTalkXml";
+	private static final String talkUrl = "https://dfims.cfapps.io/getTalkXml";
 
 	public static void makeCall(String to, String content) throws AppException {
 		try {
@@ -32,7 +32,7 @@ public class CallUtility {
 			params.add(new BasicNameValuePair("From", "+919831178623"));
 			params.add(new BasicNameValuePair("Method", "GET"));
 			// params.add(new BasicNameValuePair("StatusCallback",
-			// "http://dfims-tstar.rhcloud.com/jsp/callEvents.jsp"));
+			// "http://dfims.cfapps.io/jsp/callEvents.jsp"));
 			// params.add(new BasicNameValuePair("StatusCallbackMethod",
 			// "POST"));
 			// params.add(new BasicNameValuePair("StatusCallbackEvent",

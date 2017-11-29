@@ -55,6 +55,7 @@ public class BotDataDao extends JdbcDaoSupport implements IBotDataDao {
 		DisasterType dt = null;
 		String sql = "select disaster_type_id from t_disaster_types where disaster_type_name like '%"
 				+ name + "%'";
+		System.out.println("sql::"+sql);
 		dts = getJdbcTemplate().query(sql, new Object[] {},
 				new DisasterTypeMapper());
 		if (null != dts && !dts.isEmpty()) {

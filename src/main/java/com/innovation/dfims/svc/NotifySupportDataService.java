@@ -37,7 +37,7 @@ public class NotifySupportDataService
         this.notificationDataBusinessMgr = notificationDataBusinessMgr;
     }
 
-    //http://dfims-tstar.rhcloud.com/notifySupport
+    //http://dfims.cfapps.io/notifySupport
     //http://pc309297:8080/dfims/notifySupport
     /**
      * get Notification Details on periodic refresh
@@ -68,7 +68,7 @@ public class NotifySupportDataService
         }
     }
 
-    //http://dfims-tstar.rhcloud.com/sendNotification
+    //http://dfims.cfapps.io/sendNotification
     //http://pc309297:8080/dfims/sendNotification
     /**
      * get Notification Details on periodic refresh

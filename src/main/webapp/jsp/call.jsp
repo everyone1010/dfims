@@ -30,11 +30,11 @@ Call call = new CallCreator(
     ).execute(); */
 
     List<NameValuePair> params = new ArrayList<NameValuePair>();
-    params.add(new BasicNameValuePair("Url", "http://dfims-tstar.rhcloud.com/jsp/talk.jsp"));
+    params.add(new BasicNameValuePair("Url", "http://dfims.cfapps.io/jsp/talk.jsp"));
     params.add(new BasicNameValuePair("To", toNumber));
     params.add(new BasicNameValuePair("From", "+919831178623"));
     params.add(new BasicNameValuePair("Method", "GET"));
-    params.add(new BasicNameValuePair("StatusCallback", "http://dfims-tstar.rhcloud.com/jsp/callEvents.jsp"));
+    params.add(new BasicNameValuePair("StatusCallback", "http://dfims.cfapps.io/jsp/callEvents.jsp"));
     params.add(new BasicNameValuePair("StatusCallbackMethod", "POST"));
     params.add(new BasicNameValuePair("StatusCallbackEvent", "initiated"));
     params.add(new BasicNameValuePair("StatusCallbackEvent", "ringing"));

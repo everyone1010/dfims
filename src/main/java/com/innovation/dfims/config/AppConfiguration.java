@@ -32,6 +32,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 		dataSource.setUrl("jdbc:mysql://" + host + ":" + port + "/" + database);
 		dataSource.setUsername(username);
 		dataSource.setPassword(password);
+		System.out.println("dataSource::"+dataSource);
 		return dataSource;
 	}
 
