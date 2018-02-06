@@ -20,15 +20,20 @@ public final class AppConstant {
 	//public static final String MYSQL_SCHEMA = "dfims";
 	//public static final String MYSQL_USERNAME = "adminzf2Zvnm";
 	//public static final String MYSQL_PASSWRD = "6C7-j1QgFQGn";
-	public static final String MYSQL_DB_HOST = "us-cdbr-iron-east-05.cleardb.net";
-	public static final String MYSQL_DB_PORT = ""3306";
-	public static final String MYSQL_SCHEMA = "dfims";
-	public static final String MYSQL_USERNAME = "b1beedfae504a5";
-	public static final String MYSQL_PASSWRD = "292fa159";
+	
+//	public static final String MYSQL_DB_HOST = "us-cdbr-iron-east-05.cleardb.net";
+//	public static final String MYSQL_DB_PORT = "3306";
+//	public static final String MYSQL_SCHEMA = "ad_fd299413055147a";
+//	public static final String MYSQL_USERNAME = "b0ba3abd407765";
+//	public static final String MYSQL_PASSWRD = "7ade8a52";
+	
+	public static final String MYSQL_DB_HOST = "tstar.c7fk4ikthaqk.us-east-1.rds.amazonaws.com";
+	public static final String MYSQL_DB_PORT = "3306";
+	public static final String MYSQL_SCHEMA = "tstar";
+	public static final String MYSQL_USERNAME = "tstaruser";
+	public static final String MYSQL_PASSWRD = "tstarpwd";
 	
 	//SMTP CONFIG
-	//public static final String SENDGRID_API_KEY = "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";
-	public static final String SENDGRID_API_KEY = "";
 
 	private AppConstant() {
 		//
