@@ -17,8 +17,8 @@ import org.apache.log4j.Logger;
 public class CallUtility {
 	// shams credential
 	private static final Logger LOGGER = Logger.getLogger(CallUtility.class);
-	private static final String ACCOUNT_SID = "AC0716ada162dffba89b8c5223da5fe9b4";
-	private static final String AUTH_TOKEN = "cc923fcebc2b23ce9ea064fe1eb096a2";
+	private static final String ENCRYPTED_ACCOUNT_SID = "dDhzbjhTU0lUNnVGcHF5N3g0T0o4N2lFcCtuMUw5ZnNsS3dFTjVPWnRnWDJsdnRZOFlTVDNBeDlDSlg3bDhSMQ==";
+	private static final String ENCRYPTED_AUTH_TOKEN = "cXRmb1B5blh4T1c4TzFDWWxPL3VDY1M5OGdBNjd0UlBlTTJLbEJvc2IxQlQrRjF0akx1RVZkVnN1TFRDczYrUg==";
 	private static final String talkUrl = "https://dfims.cfapps.io/getTalkXml";
 
 	public static void makeCall(String to, String content) throws AppException {
@@ -45,8 +45,8 @@ public class CallUtility {
 			// "completed"));
 			LOGGER.info("#### TWILLIO Call::" + to + " -> " + content);
 			System.out.println("@@@@ TWILLIO Call::" + to + " -> " + content);
-			TwilioRestClient restClient = new TwilioRestClient(ACCOUNT_SID,
-					AUTH_TOKEN);
+			TwilioRestClient restClient = new TwilioRestClient(EncryptDecryptUtility.decrypt(ENCRYPTED_ACCOUNT_SID),
+					EncryptDecryptUtility.decrypt(ENCRYPTED_AUTH_TOKEN));
 			restClient.getAccount().getCallFactory().create(params);
 		} catch (Exception e) {
 			throw new AppException(e, e.getMessage());
